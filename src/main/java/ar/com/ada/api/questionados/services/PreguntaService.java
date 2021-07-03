@@ -29,5 +29,9 @@ public class PreguntaService {
     public List<Pregunta> traerPreguntas() {
         return repo.findAll();
     }
+
+    public void crearPregunta(Pregunta pregunta) {
+        repo.save(pregunta);
+    }
     
 }
