@@ -30,9 +30,17 @@ public class CategoriaService {
         return categoria;
     }
 
+    public Categoria buscarCategoriaV2(Integer categoriaId) {
+
+        Categoria categoria = repo.findById(categoriaId.intValue());
+
+        return categoria;
+
+    }
+
     public boolean crearCategoria(Categoria categoria) {
         
-        if(existe(categoria.getCategoriaId()))
+        if(existe(categoria.getNombre()))
             return false;
 
         repo.save(categoria);
@@ -40,10 +48,14 @@ public class CategoriaService {
         return true;
     }
 
-    public boolean existe(Integer id) {
+    public boolean existe(String nombre) {
 
-        Categoria categoria = buscarCategoria(id);
+        Categoria categoria = repo.findByNombre(nombre);
         return categoria != null;
+    }
+
+    public boolean existeV2(String nombre) {
+        return repo.existsByNombre(nombre);
     }
     
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.questionados.entities.Pregunta;
+import ar.com.ada.api.questionados.models.request.InfoPreguntaNueva;
+import ar.com.ada.api.questionados.models.response.GenericResponse;
 import ar.com.ada.api.questionados.services.PreguntaService;
 
 @RestController
@@ -32,11 +34,12 @@ public class PreguntaController {
     } 
 
     @PostMapping("/pregunta")
-    public ResponseEntity<?> crearPregunta(@RequestBody Pregunta pregunta) {
+    public ResponseEntity<?> crearPregunta(@RequestBody InfoPreguntaNueva preguntaNueva) {
 
         GenericResponse respuesta = new GenericResponse();
 
-        service.crearPregunta(pregunta);
+        Pregunta pregunta = service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones);
+
         respuesta.id = pregunta.getPreguntaId();
         respuesta.isOk = true;
         respuesta.message = "La pregunta fue creada con exito";

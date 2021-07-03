@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.questionados.entities.Categoria;
 import ar.com.ada.api.questionados.entities.Pregunta;
+import ar.com.ada.api.questionados.entities.Respuesta;
 import ar.com.ada.api.questionados.repos.PreguntaRepository;
 
 @Service
@@ -14,6 +16,9 @@ public class PreguntaService {
 
     @Autowired
     PreguntaRepository repo;
+
+    @Autowired
+    CategoriaService categoriaService;
 
     public Pregunta buscarPreguntaPorId(Integer preguntaId) {
 
@@ -30,8 +35,22 @@ public class PreguntaService {
         return repo.findAll();
     }
 
-    public void crearPregunta(Pregunta pregunta) {
+    public Pregunta crearPregunta(String enunciado, Integer categoriaId, List<Respuesta> opciones) {
+
+        Pregunta pregunta = new Pregunta();
+        
+        pregunta.setEnunciado(enunciado);
+
+        Categoria categoria = categoriaService.buscarCategoria(categoriaId);
+
+        pregunta.setCategoria(categoria);
+        
+        for(Respuesta respuesta : opciones) {
+            respuesta.setPregunta(pregunta);
+        }
+
         repo.save(pregunta);
+        return pregunta;
     }
     
 }

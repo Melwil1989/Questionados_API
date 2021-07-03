@@ -1,4 +1,4 @@
-package ar.com.ada.api.questionados.controllers;
+package ar.com.ada.api.questionados.models.response;
 
 public class GenericResponse {
     public Integer id;
