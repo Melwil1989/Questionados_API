@@ -2,23 +2,26 @@ package ar.com.ada.api.questionados.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="respuesta")
+@Table(name = "respuesta")
 public class Respuesta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="respuesta_id")
+    @Column(name = "respuesta_id")
     private Integer respuestaId;
 
     private String texto;
 
+    @Column(name = "es_correcta")
     private boolean esCorrecta;
 
     @ManyToOne
-    @JoinColumn(name="pregunta_id",referencedColumnName = "pregunta_id")
+    @JoinColumn(name = "pregunta_id",referencedColumnName = "pregunta_id")
+    @JsonIgnore
     private Pregunta pregunta;
-
 
    
     public Integer getRespuestaId() {

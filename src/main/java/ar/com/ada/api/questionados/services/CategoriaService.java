@@ -35,7 +35,6 @@ public class CategoriaService {
         Categoria categoria = repo.findById(categoriaId.intValue());
 
         return categoria;
-
     }
 
     public boolean crearCategoria(Categoria categoria) {

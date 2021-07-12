@@ -4,13 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import ar.com.ada.api.questionados.entities.Pregunta;
+import ar.com.ada.api.questionados.entities.*;
 import ar.com.ada.api.questionados.models.request.InfoPreguntaNueva;
 import ar.com.ada.api.questionados.models.response.GenericResponse;
 import ar.com.ada.api.questionados.services.PreguntaService;
@@ -21,19 +17,19 @@ public class PreguntaController {
     @Autowired
     PreguntaService service;
 
-    @GetMapping("/pregunta")
+    @GetMapping("/preguntas")
     public ResponseEntity<List<Pregunta>> traerPreguntas() {
 
         return ResponseEntity.ok(service.traerPreguntas());
     }
 
-    @GetMapping("/pregunta/{id}")
+    @GetMapping("/preguntas/{id}")
     public ResponseEntity<Pregunta> buscarPreguntaPorId(@PathVariable Integer id) {
         
         return ResponseEntity.ok(service.buscarPreguntaPorId(id));
     } 
 
-    @PostMapping("/pregunta")
+    @PostMapping("/preguntas")
     public ResponseEntity<?> crearPregunta(@RequestBody InfoPreguntaNueva preguntaNueva) {
 
         GenericResponse respuesta = new GenericResponse();

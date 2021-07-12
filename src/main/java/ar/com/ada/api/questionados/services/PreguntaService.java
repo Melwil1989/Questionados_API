@@ -28,7 +28,6 @@ public class PreguntaService {
             return resultado.get();
 
         return null;
-
     }
 
     public List<Pregunta> traerPreguntas() {

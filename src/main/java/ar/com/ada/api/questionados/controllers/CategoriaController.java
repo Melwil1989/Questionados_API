@@ -18,21 +18,21 @@ import ar.com.ada.api.questionados.services.CategoriaService;
 public class CategoriaController {
 
     @Autowired
-    CategoriaService service;
+    private CategoriaService service;
 
-    @GetMapping("/categoria")
+    @GetMapping("/categorias")
     public ResponseEntity<List<Categoria>> traerCategorias() {
         
         return ResponseEntity.ok(service.traerCategorias());
     }
 
-    @GetMapping("/categoria/{id}")
+    @GetMapping("/categorias/{id}")
     public ResponseEntity<Categoria> traerCategoriaPorId(@PathVariable Integer id) {
 
         return ResponseEntity.ok(service.buscarCategoria(id));
     }
 
-    @PostMapping(value = "/categoria")
+    @PostMapping(value = "/categorias")
     public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria) {
 
         GenericResponse respuesta = new GenericResponse();

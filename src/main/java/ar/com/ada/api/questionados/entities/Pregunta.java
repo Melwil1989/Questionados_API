@@ -4,7 +4,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table (name= "pregunta")
+@Table (name = "pregunta")
 public class Pregunta {
 
     @Id
@@ -12,7 +12,6 @@ public class Pregunta {
     @Column(name = "pregunta_id")
     private Integer preguntaId;
 
-    @Column(name = "enunciado")
     private String enunciado;
 
     @ManyToOne //join columns van donde esta FK
@@ -48,6 +47,7 @@ public class Pregunta {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+        this.categoria.agregarPregunta(this);
     }
 
     public List<Respuesta> getOpciones() {
