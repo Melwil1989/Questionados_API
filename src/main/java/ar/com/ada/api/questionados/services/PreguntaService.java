@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.questionados.entities.Categoria;
-import ar.com.ada.api.questionados.entities.Pregunta;
-import ar.com.ada.api.questionados.entities.Respuesta;
+import ar.com.ada.api.questionados.entities.*;
 import ar.com.ada.api.questionados.repos.PreguntaRepository;
 
 @Service

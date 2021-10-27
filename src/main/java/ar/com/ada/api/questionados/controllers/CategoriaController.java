@@ -61,5 +61,26 @@ public class CategoriaController {
             return ResponseEntity.badRequest().body(respuesta);
         }
     }
+
+    @DeleteMapping("/categorias/{id}")
+    public ResponseEntity<?> eliminarCategoriaPorId(@PathVariable Integer id) {
+
+        GenericResponse respuesta = new GenericResponse();
+
+        if(service.eliminarCategoriaPorId(id)) {
+
+            respuesta.isOk = true;
+            respuesta.message = "La categoria fue eliminada";
+
+            return ResponseEntity.ok(respuesta);
+
+        } else {
+
+            respuesta.isOk = false;
+            respuesta.message = "Ocurrio un error al intentar ejecutar la solicitud";
+
+            return ResponseEntity.badRequest().body(respuesta);
+        }
+    }
     
 }

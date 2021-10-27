@@ -2,9 +2,7 @@ package ar.com.ada.api.questionados.models.response;
 
 import java.util.*;
 
-import ar.com.ada.api.questionados.entities.Categoria;
-import ar.com.ada.api.questionados.entities.Pregunta;
-import ar.com.ada.api.questionados.entities.Respuesta;
+import ar.com.ada.api.questionados.entities.*;
 
 public class PreguntaAResolver {
 
@@ -20,6 +18,7 @@ public class PreguntaAResolver {
         preguntaAResolver.preguntaId = pregunta.getPreguntaId();
         preguntaAResolver.enunciado = pregunta.getEnunciado();
         preguntaAResolver.categoria = pregunta.getCategoria();
+        
         preguntaAResolver.opciones = new ArrayList<>();
 
         for(Respuesta respuesta : pregunta.getOpciones()) {
