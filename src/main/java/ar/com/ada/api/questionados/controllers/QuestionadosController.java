@@ -24,6 +24,8 @@ public class QuestionadosController {
         Pregunta proximaPregunta = service.traerPreguntaRandom();
 
         return ResponseEntity.ok(proximaPregunta);
+
+        // return ResponseEntity.ok(service.traerPreguntaRandom()); 
     }
 
     @PostMapping("/questionados/verificaciones")

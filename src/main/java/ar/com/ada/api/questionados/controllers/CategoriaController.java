@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.questionados.entities.Categoria;
 import ar.com.ada.api.questionados.models.response.GenericResponse;
@@ -27,9 +23,21 @@ public class CategoriaController {
     }
 
     @GetMapping("/categorias/{id}")
-    public ResponseEntity<Categoria> traerCategoriaPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> traerCategoriaPorId(@PathVariable Integer id) {
 
-        return ResponseEntity.ok(service.buscarCategoria(id));
+        GenericResponse respuesta = new GenericResponse();
+
+        if(service.existePorId(id)) {
+
+            return ResponseEntity.ok(service.buscarCategoria(id));
+
+        } else {
+
+            respuesta.isOk = false;
+            respuesta.message = "La categoria no existe";
+
+            return ResponseEntity.badRequest().body(respuesta);
+        }
     }
 
     @PostMapping(value = "/categorias")
@@ -39,11 +47,11 @@ public class CategoriaController {
 
         if(service.crearCategoria(categoria)) {
 
-        respuesta.id = categoria.getCategoriaId();
-        respuesta.isOk = true;
-        respuesta.message = "Categoria creada con exito";
+            respuesta.id = categoria.getCategoriaId();
+            respuesta.isOk = true;
+            respuesta.message = "Categoria creada con exito";
 
-        return ResponseEntity.ok(respuesta);
+            return ResponseEntity.ok(respuesta);
 
         } else {
 

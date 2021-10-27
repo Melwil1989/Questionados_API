@@ -30,12 +30,12 @@ public class CategoriaService {
         return categoria;
     }
 
-    public Categoria buscarCategoriaV2(Integer categoriaId) {
+    /*public Categoria buscarCategoriaV2(Integer categoriaId) {
 
         Categoria categoria = repo.findById(categoriaId.intValue());
 
         return categoria;
-    }
+    }*/
 
     public boolean crearCategoria(Categoria categoria) {
         
@@ -47,14 +47,20 @@ public class CategoriaService {
         return true;
     }
 
+    public boolean existePorId(int id) {
+
+        Categoria categoria = repo.findById(id);
+        return categoria != null;
+    }
+
     public boolean existe(String nombre) {
 
         Categoria categoria = repo.findByNombre(nombre);
         return categoria != null;
     }
 
-    public boolean existeV2(String nombre) {
+    /*public boolean existeV2(String nombre) {
         return repo.existsByNombre(nombre);
-    }
+    }*/
     
 }
