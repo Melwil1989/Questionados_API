@@ -19,7 +19,7 @@ public class CategoriaService {
         return repo.findAll();
     }
 
-    public Categoria buscarCategoria(Integer categoriaId) {
+    public Categoria buscarCategoriaPorId(Integer categoriaId) {
         
         Optional<Categoria> resultado = repo.findById(categoriaId);
         Categoria categoria = null;

@@ -28,9 +28,21 @@ public class PreguntaController {
     }
 
     @GetMapping("/preguntas/{id}")
-    public ResponseEntity<Pregunta> buscarPreguntaPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> buscarPreguntaPorId(@PathVariable Integer id) {
+
+        GenericResponse respuesta = new GenericResponse();
+
+        if(service.existePorId(id)) {
+
+            return ResponseEntity.ok(service.buscarPreguntaPorId(id));
+
+        } else {
+
+            respuesta.isOk = false;
+            respuesta.message = "La pregunta no existe";
         
-        return ResponseEntity.ok(service.buscarPreguntaPorId(id));
+            return ResponseEntity.badRequest().body(respuesta);
+        }
     } 
 
     @PostMapping("/preguntas")
@@ -46,5 +58,7 @@ public class PreguntaController {
 
         return ResponseEntity.ok(respuesta);
     }
+
+    
     
 }

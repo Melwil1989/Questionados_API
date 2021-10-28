@@ -31,11 +31,14 @@ public class QuestionadosController {
         RespuestaVerificada respuestaVerificada = new RespuestaVerificada();
 
         if(service.verificarRespuesta(respuestaAVerificar.preguntaId, respuestaAVerificar.respuestaId)) {
+
             respuestaVerificada.esCorrecta = true;
+
         } else {
+
             respuestaVerificada.esCorrecta = false;
         }
-
+        
         return ResponseEntity.ok(respuestaVerificada);
     }
 

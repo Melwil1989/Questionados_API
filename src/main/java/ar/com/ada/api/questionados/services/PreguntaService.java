@@ -38,7 +38,7 @@ public class PreguntaService {
         
         pregunta.setEnunciado(enunciado);
 
-        Categoria categoria = categoriaService.buscarCategoria(categoriaId);
+        Categoria categoria = categoriaService.buscarCategoriaPorId(categoriaId);
 
         pregunta.setCategoria(categoria);
         
@@ -48,6 +48,12 @@ public class PreguntaService {
 
         repo.save(pregunta);
         return pregunta;
+    }
+
+    public boolean existePorId(int id) {
+
+        Pregunta pregunta = repo.findById(id);
+        return pregunta != null;
     }
     
 }

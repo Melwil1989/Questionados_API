@@ -29,7 +29,7 @@ public class CategoriaController {
 
         if(service.existePorId(id)) {
 
-            return ResponseEntity.ok(service.buscarCategoria(id));
+            return ResponseEntity.ok(service.buscarCategoriaPorId(id));
 
         } else {
 
