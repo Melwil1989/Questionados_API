@@ -34,25 +34,36 @@ public class PreguntaService {
 
     public Pregunta crearPregunta(String enunciado, Integer categoriaId, List<Respuesta> opciones) {
 
-        Pregunta pregunta = new Pregunta();
-        
-        pregunta.setEnunciado(enunciado);
+        if(!existePreguntaPorPregunta(enunciado)) {
 
-        Categoria categoria = categoriaService.buscarCategoriaPorId(categoriaId);
-
-        pregunta.setCategoria(categoria);
+            Pregunta pregunta = new Pregunta();
         
-        for(Respuesta respuesta : opciones) {
-            respuesta.setPregunta(pregunta);
+            pregunta.setEnunciado(enunciado);
+
+            Categoria categoria = categoriaService.buscarCategoriaPorId(categoriaId);
+
+            pregunta.setCategoria(categoria);
+        
+            for(Respuesta respuesta : opciones) {
+                respuesta.setPregunta(pregunta);
+            }
+
+            repo.save(pregunta);
+            return pregunta;
         }
 
-        repo.save(pregunta);
-        return pregunta;
+        return null;
     }
 
     public boolean existePorId(int id) {
 
         Pregunta pregunta = repo.findById(id);
+        return pregunta != null;
+    }
+
+    public boolean existePreguntaPorPregunta(String enunciado) {
+
+        Pregunta pregunta = repo.findByEnunciado(enunciado);
         return pregunta != null;
     }
     

@@ -9,4 +9,5 @@ import ar.com.ada.api.questionados.entities.Pregunta;
 public interface PreguntaRepository extends JpaRepository<Pregunta, Integer> {
     
     Pregunta findById(int id);
+    Pregunta findByEnunciado(String enunciado);
 }

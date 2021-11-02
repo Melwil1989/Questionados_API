@@ -50,15 +50,23 @@ public class PreguntaController {
 
         GenericResponse respuesta = new GenericResponse();
 
-        Pregunta pregunta = service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones);
+        Pregunta pregunta = new Pregunta();
 
-        respuesta.id = pregunta.getPreguntaId();
-        respuesta.isOk = true;
-        respuesta.message = "La pregunta fue creada con exito";
+        if(service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones) != null) {
 
-        return ResponseEntity.ok(respuesta);
+            respuesta.id = pregunta.getPreguntaId();
+            respuesta.isOk = true;
+            respuesta.message = "La pregunta fue creada con exito";
+    
+            return ResponseEntity.ok(respuesta);
+
+        } else {
+
+            respuesta.isOk = false;
+            respuesta.message = "La pregunta ya existe";
+
+            return ResponseEntity.badRequest().body(respuesta);
+        }
     }
-
-    
-    
+   
 }
