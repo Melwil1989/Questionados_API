@@ -20,10 +20,6 @@ public class PreguntaController {
     @GetMapping("/preguntas")
     public ResponseEntity<List<Pregunta>> traerPreguntas() {
 
-        /*List<Pregunta> respuesta = service.traerPreguntas();  (se puede hacer eso?)
-
-        return ResponseEntity.ok(respuesta);*/
-
         return ResponseEntity.ok(service.traerPreguntas());
     }
 
