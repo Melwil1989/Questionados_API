@@ -25,4 +25,4 @@ https://ada-questionados-mw.herokuapp.com/
 
 #### Esquema de la base de datos
 
-![EsquemaQuestionados](https://user-images.githubusercontent.com/79877606/139946951-72ac88e4-7f77-436a-b0b5-25a393a2e004.png)
+![EsquemaQuestionados](https://user-images.githubusercontent.com/79877606/140368878-530aa1a4-c107-46f2-9aa6-a84a1cf2d4a2.png)
